@@ -1,25 +1,25 @@
 targetScope = 'resourceGroup'
 
-@description('Short project name. Keep this short because the Windows computer name has a 15 character limit.')
+@description('Project name. Required. Use 2 to 8 characters. This value is used in Azure resource names and the Windows computer name.')
 @minLength(2)
 @maxLength(8)
-param projectName string = 'projname'
+param projectName string
 
 @description('Azure region where the resources will be deployed. By default, the resource group location is used.')
 param location string = resourceGroup().location
 
-@description('Local administrator username for the Windows Server VM.')
-param adminUsername string = 'justin-admin'
+@description('Username. Required. Local administrator username for the Windows Server VM.')
+param adminUsername string
 
-@description('Local administrator password for the Windows Server VM and the Active Directory DSRM password. Use a strong password.')
+@description('Password. Required. Local administrator password for the Windows Server VM and the Active Directory DSRM password. Use a strong password.')
 @secure()
 param adminPassword string
 
-@description('Public IPv4 address that is allowed to connect with RDP. Enter only the IP address, without /32.')
+@description('Public IP address. Required. Public IPv4 address that is allowed to connect with RDP. Enter only the IP address, without /32.')
 param sourceIpAddress string
 
-@description('Windows Server VM size.')
-param vmSize string = 'Standard_D2as_v7'
+@description('Server size. Required. Enter an Azure VM size, for example Standard_D2as_v5 or Standard_D2as_v7.')
+param vmSize string
 
 @description('Virtual network address space.')
 param vnetAddressPrefix string = '10.69.0.0/16'
@@ -30,13 +30,13 @@ param subnetPrefix string = '10.69.0.0/24'
 @description('Static private IP address for the domain controller.')
 param vmPrivateIpAddress string = '10.69.0.4'
 
-@description('Active Directory domain name to create on the server.')
-param domainName string = 'justinverstijnen.nl'
+@description('Active Directory domain name. Required. Example: contoso.local or ad.contoso.com.')
+param domainName string
 
-@description('Active Directory NetBIOS name to create on the server.')
+@description('NETBIOS name. Required. Active Directory NetBIOS name. Use 1 to 15 characters.')
 @minLength(1)
 @maxLength(15)
-param domainNetbiosName string = 'JV'
+param domainNetbiosName string
 
 @description('Tags applied to all supported resources.')
 param tags object = {

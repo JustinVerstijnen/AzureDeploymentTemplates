@@ -39,7 +39,8 @@
       "type": "string",
       "metadata": {
         "description": "Enter an Azure VM size, for example Standard_D2as_v5 or Standard_D2as_v7."
-      }
+      },
+      "defaultValue": "Standard_D2as_v7"
     },
     "domainName": {
       "type": "string",
